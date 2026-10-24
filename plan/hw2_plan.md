@@ -5,18 +5,17 @@ size: 4:3
 
 # Project 1 Plan
 
-**Submission Deadline:** October 23, 2026 (date recorded in the HW2 plan; Canvas is the final authority)
+**Submission Deadline:** October 23
 
 Planning anchors: HW2 is due in Week 4, Project 1 starts in Week 5, HW3 Q&A
 is in Week 7, Midterm 1 is in Week 8, and Project 1 is due in Week 9.
-Canvas is the official source for exact deadlines.
 
 ---
 
 ## Your Project 1 Submission Date
 
 1. **When (Plan):** October 21 
-2. **When (Actual):** Not submitted yet  
+2. **When (Actual):** October 23
 3. **Comment:** I plan to finish two days early so I have time to test everything and fix any problems.
 
 ---
@@ -39,7 +38,7 @@ POST /students → Create new student
 PUT /students/1 → Update student
 DELETE /students/1 → Delete student *
 ```
-My project is a simple movie collection API. The earlier plan used genres. I changed the topic to movies and genres on October 23, 2026. The project still has the same CRUD structure and two protected delete routes.
+My project is a simple movie collection API. The earlier plan used genres. I changed the topic to movies and genres. The project still has the same CRUD structure and two protected delete routes.
 
 | # | Endpoint | Description | Bearer | Implemented On |
 |---|----------|-------------|:---:|---|
@@ -62,7 +61,7 @@ My project is a simple movie collection API. The earlier plan used genres. I cha
 
 1. **What:** Finalize all 10 endpoints planned in HW2 (2 of them Bearer-token protected); design the MySQL table(s).
 2. **When (Plan):**  September 28
-3. **When (Actual):** October 23, 2026  
+3. **When (Actual):** September 30
 4. **Comment:** I will plan the tables and endpoints before I start writing the full API.
 
 ---
@@ -71,7 +70,7 @@ My project is a simple movie collection API. The earlier plan used genres. I cha
 
 1. **What:** Implement CRUD endpoints and create cURL plus HTML/JavaScript tests.
 2. **When (Plan):** October 12
-3. **When (Actual):** October 23, 2026  
+3. **When (Actual):** October 12
 4. **Comment:** I will test each endpoint as I finish it so problems are easier to find.
 
 ---
@@ -80,11 +79,7 @@ My project is a simple movie collection API. The earlier plan used genres. I cha
 
 1. **What:** Complete tutorial slides, test NGINX deployment, and organize `code/`, `presentation/`, and `plan/`.
 2. **When (Plan):**  October 21
-3. **When (Actual):** October 23, 2026  
+3. **When (Actual):** October 23
 4. **Comment:** I will finish the deployment and slides before the October 23 deadline.
 
 ---
-
-## Plan update
-
-Original planned dates above are preserved. Actual dates record this completion session, not the earlier targets. The submission date stays unconfirmed until the ZIP is uploaded to Canvas.
