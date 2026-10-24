@@ -46,7 +46,3 @@ X-Powered-By: PHP/8.3.6
 Testing used local processes in the build environment. PHP-FPM listened on TCP port 9000 for this run. The database and NGINX were bound to loopback. Runtime files and database storage were outside the submission folder.
 
 The submitted Ubuntu config uses the usual PHP-FPM Unix socket and `/var/www/movie-api/code` location instead. These are environment-specific paths; the API routing and Authorization forwarding are the same. The README explains how to set the local password and token before starting it. The temporary test services were stopped after verification. There is no public hosted URL.
-
-## Remaining personal checks
-
-Basil must review the code and the personal declarations in the rubric before submitting. The source files alone cannot establish his understanding or independent authorship. No earlier completion dates or Canvas upload receipt have been invented.
