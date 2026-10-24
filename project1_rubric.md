@@ -1,0 +1,146 @@
+# Project 1 Grading and Submission
+
+**Total: 100%**
+
+Technical self-assessment: 100/100 based on the included test evidence and files. This is not a promised instructor grade. Personal authorship and understanding declarations below are unconfirmed and must be reviewed honestly by Basil. Assistance was used to implement and document this version. Canvas upload is not yet confirmed.
+
+> **Submission format:** Submit **one ZIP file** containing everything — `code/`, `presentation/`, `plan/`, this completed rubric file (`project1_rubric.md`), and your `README.md`. **If the completed rubric or README.md is missing, the submission cannot be graded.**
+
+---
+
+## Grading Policy and Rules
+
+- Students must complete this checklist and self-assessment before submission.
+- The instructor may re-evaluate any section and add or deduct percentage points based on actual quality and completeness.
+- All Marp slide files must also be exported to PDF before submission.
+- Check Canvas or ask the instructor if any submission detail is unclear.
+- Project 1 is individual work. You must write and understand your own code, tests, documentation, and presentation.
+- AI may explain concepts, debug code you wrote, or explain documentation, but you may not submit AI-generated work that you do not understand.
+- If AI-generated work is discovered in your submission (code, tests, slides, or documentation you cannot explain or did not write yourself), this project will be **nullified** (zero credit) under the academic integrity rule, regardless of other completed work.
+- The [`submission_example/`](submission_example/) materials are a **reference only**. Use the folder organization and explanation style as references, but write your own API, database schema, tests, and presentation content. Do not submit copied example code, slides, or text as your own work.
+- The example's API, authentication, database, and test implementations are intentionally omitted. Its documentation, sample responses, and example self-assessment scores illustrate a finished project; they do not establish that the supplied code works. Completing the example for practice is different from preparing your own submission.
+- Implementation credit is based on working behavior, not merely the presence of files or a test-client screen. TODO placeholders, the example's HTTP 501 response, an SQL file that creates no tables, and tests that send no requests do not earn implementation credit for the corresponding functionality. Assess your actual work using the existing categories and weights below.
+- Late work requires prior approval. Request an extension at least 48 hours before the deadline. An approved extension adds one week with a 20% deduction.
+
+---
+
+## REST API Implementation (65%)
+
+### Required items
+
+- [20/20%] Implemented at least **10 total REST APIs** in PHP/MySQL (**2% per API**).
+  - Endpoints should demonstrate standard CRUD operations.
+  - At least **2 of these 10 APIs** must use **Bearer Token authentication** (these 2 protected APIs count toward the total 10).
+  - List the names of your implemented APIs (except for the Bearer Token APIs):
+    - `GET /movies`, `GET /movies/{id}`, `POST /movies`, `PUT /movies/{id}`
+    - `GET /genres`, `GET /genres/{id}`, `POST /genres`, `PUT /genres/{id}`
+- [10/10%] Implemented at least **2 Bearer Token-protected APIs** in PHP/MySQL (**5% per API**).
+  - Token authentication pattern should follow lecture/homework guidelines.
+  - List the names of the Bearer Token APIs:
+    - `DELETE /movies/{id}`
+    - `DELETE /genres/{id}`
+- [10/10%] Created **cURL test code** for all implemented APIs.
+  - List the file name: `code/test_curl.sh`
+- [10/10%] Created **HTML/JavaScript test code** for all implemented APIs.
+  - List the file name: `code/test_client.html`
+- [5/5%] Database integration works correctly with MySQL.
+  - Full credit only if the database portion works correctly.
+  - List your MySQL table names: `genres`, `movies`
+- [10/10%] Code pushed to a **GitHub repository** with clear execution instructions.
+  - **5%:** Required code is pushed to GitHub and a valid repository link is provided.
+  - **5%:** Root `README.md` clearly explains prerequisites, database setup/schema import, server start commands (`http://localhost:8080`), and how to run tests. The grader can easily follow the instructions to run and test the project.
+  - Write your GitHub repository link: https://github.com/basilwaz/h
+  - Write your GitHub repository README.md link: https://github.com/basilwaz/h/blob/main/README.md
+
+---
+
+| Task | % | Earned |
+|---|---:|---:|
+| At least 10 REST APIs | 20% | [20/20%] |
+| At least 2 Bearer Token APIs | 10% | [10/10%] |
+| cURL test code for all APIs | 10% | [10/10%] |
+| HTML/JavaScript test code for all APIs | 10% | [10/10%] |
+| MySQL database integration | 5% | [5/5%] |
+| GitHub repository and execution guide | 10% | [10/10%] |
+| **Total** | **65%** | [65/65%] |
+
+---
+
+## Tutorial Slides (25%)
+
+### Required items
+
+- [15/15%] Created **Marp slides** explaining API usage.
+  - Full credit requires **more than 15 slides/pages**, clear explanation, and meaningful coverage of the APIs.
+  - Partial credit may be given for incomplete but substantial work.
+  - No credit if no slide deck is submitted.
+  - List Marp file name: `presentation/api_tutorial.md` (23 pages)
+- [5/5%] The marp slides are correctly transformed into pdf files.
+  - List PDF file name: `presentation/api_tutorial.pdf` (23 pages)
+- [5/5%] Slides and PDFs uploaded to **GitHub**.
+  - Write your GitHub repository Marp file link: https://github.com/basilwaz/h/blob/main/presentation/api_tutorial.md
+  - Write your GitHub repository PDF link: https://github.com/basilwaz/h/blob/main/presentation/api_tutorial.pdf
+
+---
+
+| Task | % | Earned |
+|---|---:|---:|
+| Marp slides explaining the APIs | 15% | [15/15%] |
+| Slides correctly exported to PDF | 5% | [5/5%] |
+| Slides and PDFs uploaded to GitHub | 5% | [5/5%] |
+| **Total** | **25%** | [25/25%] |
+
+---
+
+## NGINX Deployment (10%)
+
+### Required items
+
+- [5/5%] REST API successfully deployed with **NGINX**.
+  - Full credit only if the deployment is working.
+- [5/5%] Deployment steps documented in **Marp slides** and exported to **PDF**.
+  - Full credit requires a clear deployment tutorial.
+  - Include screen captures that show the NGINX server working.
+  - List Marp file name: `presentation/nginx_deployment.md`
+  - PDF: `presentation/nginx_deployment.pdf` (12 pages)
+  - Real captures: `presentation/nginx_screenshot.png`, `presentation/nginx_tests.png`
+  - Local deployment verified with NGINX 1.24.0, PHP-FPM 8.3.6, and MySQL 8.0.46.
+
+---
+
+| Task | % | Earned |
+|---|---:|---:|
+| REST API deployed with NGINX | 5% | [5/5%] |
+| Deployment tutorial in Marp and PDF | 5% | [5/5%] |
+| **Total** | **10%** | [10/10%] |
+
+---
+
+## Final Submission Checklist
+
+- [ ] I understand that the instructor may deduct percentage points for poor-quality or incomplete work.
+- [ ] I understand that missing citations may be treated as plagiarism.
+- [ ] I completed this individual project myself and can explain every part.
+- [ ] I used AI only for permitted support and did not use vibe coding, and I understand my project will be nullified if AI-generated work is discovered.
+- [ ] I used `submission_example/` only as a reference for organization and explanation style; I wrote my own implementation and content, and my self-assessment reflects verified functionality rather than example placeholders or sample scores.
+- [ ] I verified that my database initialization instructions and server start commands (`http://localhost:8080`) in `README.md` work properly.
+- [x] I copied files into the correct directories: `code/`, `presentation/`, `plan/`.
+- [x] I included this completed rubric file (`project1_rubric.md`) and my `README.md` in the submission folder.
+- [x] I pushed (uploaded) the required materials to GitHub and included the repository link.
+- [ ] I zipped my entire project1 submission folder — including this rubric file and `README.md` — and uploaded only that ZIP as my final Canvas submission.
+- [ ] My project is organized clearly and is suitable for portfolio presentation.
+
+---
+
+| Task | % | Earned |
+|---|---:|---:|
+| REST API Implementation | 65% | [65/65%] |
+| Tutorial Slides | 25% | [25/25%] |
+| NGINX Deployment | 10% | [10/10%] |
+| **Total** | **100%** | [100/100%] |
+
+## Verification notes
+
+See `presentation/verification.md` for the actual runs: 29 cURL checks and 23 browser checks passed through both PHP and NGINX against MySQL 8.0.46. Both slide PDFs were exported and visually reviewed.
+
+Unchecked personal statements are not confirmed on Basil's behalf. The Canvas upload box remains unchecked until a successful upload is verified. `code_explanation.md` is included for review before presenting. No claims about independent authorship or permitted AI use have been checked automatically.

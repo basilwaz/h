@@ -1,0 +1,18 @@
+# Ubuntu example: save as /etc/nginx/sites-available/movie-api.
+server {
+    listen 127.0.0.1:8081;
+    server_name localhost;
+    root /var/www/movie-api/code;
+
+    location = /test_client.html {
+        default_type text/html;
+    }
+
+    # Only the test client is served as a static file. SQL and PHP source stay private.
+    location / {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root/index.php;
+        fastcgi_param HTTP_AUTHORIZATION $http_authorization;
+        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
+    }
+}

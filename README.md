@@ -185,6 +185,7 @@ Canvas requires one ZIP containing the `project1/` folder. Review the personal c
 - PHP Manual, “PDO::prepare.” <https://www.php.net/manual/en/pdo.prepare.php>
 - PHP Manual, “hash_equals.” <https://www.php.net/manual/en/function.hash-equals.php>
 - NGINX, “Module ngx_http_fastcgi_module.” <https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html>
+- PHP Manual, “Runtime Configuration (PHP-FPM).” <https://www.php.net/manual/en/install.fpm.configuration.php>
 - MySQL 8.0 Reference Manual, “FOREIGN KEY Constraints.” <https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html>
 - Marp, “Markdown Presentation Ecosystem.” <https://marp.app/>
 

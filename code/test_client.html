@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Movie Collection API Tests</title>
+<style>
+body{font:16px Arial,sans-serif;max-width:900px;margin:32px auto;padding:0 20px;color:#172033;background:#f5f7fa}h1,h2{color:#173e70}section{background:white;border:1px solid #c9d1dc;padding:18px;margin:18px 0}label{display:block;margin:12px 0}input,textarea,button,select{font:inherit;padding:8px;box-sizing:border-box}input{max-width:100%}textarea{display:block;width:100%;height:90px}button{background:#173e70;color:white;border:0;margin:5px 5px 5px 0;cursor:pointer}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eef2f6;padding:14px;min-height:24px}small{display:block;line-height:1.5}
+</style>
+</head>
+<body>
+<h1>Movie Collection API Tests</h1>
+<p>Basil Wazwaz | ASE 230 Project 1</p>
+<p>Open this page through the running server. Add a genre first, then use its ID when adding a movie. Use disposable records for deletes.</p>
+<label>Bearer token for deletes <input id="token" type="password" autocomplete="off" placeholder="Enter your local API_TOKEN"></label>
+<p>Leave the token blank or enter a wrong one to test a 401 response.</p>
+<div id="forms"></div>
+<section>
+<h2>Run all tests</h2>
+<p>This creates a temporary genre and movie, checks all 10 routes and bad-token cases, then deletes the temporary records. Seed records stay in place.</p>
+<button id="run-all" type="button">Run all tests</button>
+<pre id="suite" aria-live="polite">Results will appear here.</pre>
+</section>
+<script>
+const forms = document.getElementById('forms');
+for (const resource of ['genres', 'movies']) {
+    const sample = resource === 'genres' ? {name:'Comedy'} : {title:'New Movie',release_year:2020,genre_id:1};
+    const section = document.createElement('section');
+    section.innerHTML = `<h2>${resource}</h2>
+      <label>Record ID <input id="${resource}-id" type="number" min="1" value="1"></label>
+      <label>JSON body for POST and PUT <textarea id="${resource}-body"></textarea></label>
+      <small>PUT needs all fields. A genre cannot be deleted while a movie uses it.</small>
+      <button data-method="GET" data-single="false">GET /${resource}</button>
+      <button data-method="GET" data-single="true">GET /${resource}/{id}</button>
+      <button data-method="POST" data-single="false">POST /${resource}</button>
+      <button data-method="PUT" data-single="true">PUT /${resource}/{id}</button>
+      <button data-method="DELETE" data-single="true">DELETE /${resource}/{id}</button>
+      <pre id="${resource}-result" aria-live="polite">Results will appear here.</pre>`;
+    forms.append(section);
+    document.getElementById(`${resource}-body`).value = JSON.stringify(sample, null, 2);
+    for (const button of section.querySelectorAll('button')) {
+        button.onclick = async () => {
+            const output = document.getElementById(`${resource}-result`);
+            try {
+                const id = document.getElementById(`${resource}-id`).value;
+                if (button.dataset.single === 'true' && !/^[1-9][0-9]*$/.test(id)) throw Error('Enter a positive ID.');
+                const path = '/' + resource + (button.dataset.single === 'true' ? '/' + id : '');
+                const method = button.dataset.method;
+                const body = ['POST','PUT'].includes(method) ? JSON.parse(document.getElementById(`${resource}-body`).value) : undefined;
+                const result = await send(method, path, body, method === 'DELETE' ? document.getElementById('token').value : '');
+                output.textContent = `HTTP ${result.status}\n` + JSON.stringify(result.data, null, 2);
+                if (method === 'POST' && result.status === 201) document.getElementById(`${resource}-id`).value = result.data.id;
+            } catch (error) { output.textContent = error.message; }
+        };
+    }
+}
+async function send(method, path, body, token = '') {
+    const headers = {};
+    if (body !== undefined) headers['Content-Type'] = 'application/json';
+    if (token) headers.Authorization = 'Bearer ' + token;
+    const response = await fetch(path, {method, headers, body: body === undefined ? undefined : JSON.stringify(body)});
+    return {status: response.status, data: await response.json()};
+}
+document.getElementById('run-all').onclick = async () => {
+    const button = document.getElementById('run-all');
+    const output = document.getElementById('suite');
+    const token = document.getElementById('token').value;
+    if (!token) { output.textContent = 'Enter the configured token before running all tests.'; return; }
+    button.disabled = true;
+    output.textContent = '';
+    let genre, movie, count = 0;
+    async function check(method, path, expected, body, auth = '') {
+        const result = await send(method, path, body, auth);
+        if (result.status !== expected) throw Error(`${method} ${path}: expected ${expected}, got ${result.status}`);
+        count++;
+        output.textContent += `PASS ${method} ${path} (${result.status})\n`;
+        return result.data;
+    }
+    try {
+        await check('GET','/genres',200);
+        genre = (await check('POST','/genres',201,{name:'Browser test '+Date.now()})).id;
+        await check('GET',`/genres/${genre}`,200);
+        await check('PUT',`/genres/${genre}`,200,{name:'Browser updated '+Date.now()});
+        movie = (await check('POST','/movies',201,{title:'Browser Movie',release_year:2020,genre_id:genre})).id;
+        await check('GET','/movies',200);
+        await check('GET',`/movies/${movie}`,200);
+        await check('PUT',`/movies/${movie}`,200,{title:'Updated Browser Movie',release_year:2021,genre_id:genre});
+        const saved = await check('GET',`/movies/${movie}`,200);
+        if (saved.title !== 'Updated Browser Movie') throw Error('Updated title was not saved.');
+        for (const path of [`/movies/${movie}`,`/genres/${genre}`]) {
+            await check('DELETE',path,401);
+            await check('DELETE',path,401,undefined,'wrong-token');
+            await check('GET',path,200);
+        }
+        await check('DELETE',`/genres/${genre}`,409,undefined,token);
+        await check('POST','/movies',422,{title:'Bad',release_year:1800,genre_id:genre});
+        await check('POST','/genres',422,{name:''});
+        await check('GET','/unknown',404);
+        await check('DELETE',`/movies/${movie}`,200,undefined,token);
+        await check('GET',`/movies/${movie}`,404);
+        movie = undefined;
+        await check('DELETE',`/genres/${genre}`,200,undefined,token);
+        await check('GET',`/genres/${genre}`,404);
+        genre = undefined;
+        output.textContent += `${count} checks passed. Temporary records deleted.`;
+    } catch (error) {
+        output.textContent += 'FAIL: '+error.message+'\n';
+        // Clean up only records created by this run, in child-first order.
+        for (const path of [movie ? `/movies/${movie}` : null, genre ? `/genres/${genre}` : null]) {
+            if (!path) continue;
+            try {
+                const result = await send('DELETE',path,undefined,token);
+                output.textContent += `Cleanup ${path}: HTTP ${result.status}\n`;
+            } catch (cleanupError) { output.textContent += `Cleanup failed: ${cleanupError.message}\n`; }
+        }
+    } finally { button.disabled = false; }
+};
+</script>
+</body>
+</html>
