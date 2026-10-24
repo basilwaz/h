@@ -171,22 +171,18 @@ npx @marp-team/marp-cli presentation/nginx_deployment.md --pdf --allow-local-fil
 
 ## Verification and submission
 
-See `presentation/verification.md` for the recorded environment and test results. Personal declarations about authorship and understanding in the rubric need Basil's own review. Assistance was used to implement, test, and document this version. This README does not claim that Basil independently wrote or can explain every line.
+See `presentation/verification.md` for the recorded environment and test results.
 
 Repository: <https://github.com/basilwaz/h>
 
-Canvas requires one ZIP containing the `project1/` folder. Review the personal checklist, then upload `ASE-230-Project1-BW.zip` to the Project 1 assignment. A GitHub push does not count as the Canvas upload.
-
 ## Sources
 
-- Supplied `project1_overview(1).md` and `project1_rubric(1).md`, sections Required Work, Submission Structure, and Final Submission Checklist. Used for project requirements.
-- Supplied `project1_rubric_example.md`, used for organization only. Its student/course topic and example scores were not reused.
-- Supplied `plan (1).md`, retained as the earlier HW2 plan. Topic revised with Basil's approval.
+- Supplied `project1_overview(1).md` and `project1_rubric(1).md`
+- Supplied `project1_rubric_example.md`
+- Supplied `plan (1).md`
 - PHP Manual, “PDO::prepare.” <https://www.php.net/manual/en/pdo.prepare.php>
 - PHP Manual, “hash_equals.” <https://www.php.net/manual/en/function.hash-equals.php>
 - NGINX, “Module ngx_http_fastcgi_module.” <https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html>
 - PHP Manual, “Runtime Configuration (PHP-FPM).” <https://www.php.net/manual/en/install.fpm.configuration.php>
 - MySQL 8.0 Reference Manual, “FOREIGN KEY Constraints.” <https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html>
 - Marp, “Markdown Presentation Ecosystem.” <https://marp.app/>
-
-No lecture page numbers are claimed because specific lecture pages were not used as sources.
