@@ -1,6 +1,6 @@
 # Code walkthrough
 
-This is a short guide for reviewing the project before presenting it.
+This is a short guide for reviewing the project.
 
 ## Files
 
@@ -27,13 +27,3 @@ For `DELETE /movies/1`, the token is checked first. A missing or incorrect token
 - The password and token come from the environment so real secrets stay out of GitHub.
 - The browser uses textContent for results so stored text is displayed as text.
 - PUT expects the complete record. PATCH is not implemented and returns 405.
-
-## Practice questions
-
-1. Can you add a genre, use its returned ID to add a movie, and explain both SQL statements?
-2. Can you explain why a wrong token returns 401 before deleting anything?
-3. Can you explain why deleting a used genre returns 409?
-4. Can you change a movie title and show that it stays changed on a later GET?
-5. Can you explain the difference between the PHP development server and NGINX with PHP-FPM?
-
-Read the actual source while working through these questions. This guide does not certify understanding.
