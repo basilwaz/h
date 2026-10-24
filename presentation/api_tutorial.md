@@ -399,7 +399,3 @@ Project 2 can rebuild the same routes in Laravel.
 - MySQL 8.0 Reference Manual: FOREIGN KEY Constraints.
 - NGINX documentation: `ngx_http_fastcgi_module`.
 - Marp: Markdown Presentation Ecosystem.
-
-Full URLs are in README.md.
-The submission example was used to check folder organization.
-Its student/course API and example scores were not used.
